@@ -1,7 +1,7 @@
 class Solution {
 public:
     int mySqrt(int num) {
-         long long l = 1,h = num;
+         long long l = 1,h = num / 2;
        
         while(l <= h)
         {
@@ -20,6 +20,6 @@ public:
             }
         }
 
-        return l - 1;
+        return h;
     }
 };
