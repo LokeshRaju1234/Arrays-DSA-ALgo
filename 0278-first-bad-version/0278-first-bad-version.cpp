@@ -11,7 +11,7 @@ public:
 
             if(isBadVersion(mid))
             {
-              h = mid;
+              h = mid;//the first bad version we encountered till now so we move high
             }
             else
             {
