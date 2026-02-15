@@ -1,23 +1,19 @@
 class Solution {
 public:
     vector<int> toggleLightBulbs(vector<int>& bulbs) {
-        unordered_map<int,int>toggle;
+        bool bulbs1[101] = {0};//keep all bulbs off
 
         for(int x : bulbs)
         {
-            if(toggle[x] == 0) toggle[x]++;
-            else toggle[x]--;
+         bulbs1[x] = !bulbs1[x];   
         }
+
         vector<int>ans;
 
-        for(auto &p : toggle)
+        for(int i = 0;i < 101;i++)
         {
-            if(p.second == 1)
-            {
-                ans.push_back(p.first);
-            }
+            if(bulbs1[i] == 1) ans.push_back(i);
         }
-
         return ans;
     }
 };
