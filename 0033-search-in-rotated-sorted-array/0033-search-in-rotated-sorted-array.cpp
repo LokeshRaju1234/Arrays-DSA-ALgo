@@ -21,7 +21,7 @@ public:
             // right half sorted
             else
             {
-                if(nums[mid] < target && target <= nums[h])
+                if(nums[mid] <= target && target <= nums[h])
                     l = mid + 1;
                 else
                     h = mid - 1;
