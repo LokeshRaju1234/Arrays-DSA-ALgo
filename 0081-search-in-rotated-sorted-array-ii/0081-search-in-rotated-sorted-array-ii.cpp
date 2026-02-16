@@ -12,10 +12,11 @@ public:
                 return true;
             }
 
-            if(nums[l] == nums[mid] == nums[h])
+            if((nums[l] == nums[mid]) && (nums[mid] == nums[h]))
             {
                 l++;
                 h--;
+                continue;
             }
             //checking for left Half
             if(nums[l] <= nums[mid])
