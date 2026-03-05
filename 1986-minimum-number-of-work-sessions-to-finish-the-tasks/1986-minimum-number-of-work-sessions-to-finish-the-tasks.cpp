@@ -1,42 +1,42 @@
 class Solution {
 public:
-    int minSessions(vector<int>& tasks, int sessionTime) {
-
+    int minSessions(vector<int>& tasks, int sessionTime) 
+    {
         int n = tasks.size();
-        int N = 1 << n;
+        int N = 1<<n;//total number of subsets I will get
+        vector<pair<int,int>>dp(N,{n + 1,0});//n + 1 sessions as worst case
+        //may be we can get all tasks in different sessions
 
-        vector<pair<int,int>> dp(N, {n+1, 0});
         dp[0] = {1,0};
-
-        for(int mask = 0; mask < N; mask++)
+        for(int mask = 0;mask < N;mask++)//tells you which tasks are finished
         {
-            for(int i = 0; i < n; i++)
+            for(int i = 0;i < n;i++)//which task i need to do next
             {
-                if(mask & (1<<i)) continue;
+                if(mask & (1<<i)) continue;//if the task is already done
 
-                int newMask = mask | (1<<i);
+                int newMask = mask | (1 << i);
 
                 int sessions = dp[mask].first;
-                int time = dp[mask].second;
+                int currTime = dp[mask].second;
 
-                if(time + tasks[i] <= sessionTime)
+                if(currTime + tasks[i] <= sessionTime)
                 {
-                    time += tasks[i];
+                    currTime += tasks[i];
                 }
                 else
                 {
-                    sessions++;
-                    time = tasks[i];
+                    sessions++;//new session
+                    currTime = tasks[i];
                 }
 
                 if(sessions < dp[newMask].first ||
-                  (sessions == dp[newMask].first && time < dp[newMask].second))
+                sessions == dp[newMask].first && currTime < dp[newMask].second)
                 {
-                    dp[newMask] = {sessions,time};
+                    dp[newMask] = {sessions,currTime};
                 }
             }
         }
 
-        return dp[N-1].first;
+      return  dp[N - 1].first;
     }
 };
