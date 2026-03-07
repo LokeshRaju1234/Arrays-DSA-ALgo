@@ -2,7 +2,7 @@ class Solution {
 public:
     int maxEvents(vector<vector<int>>& events) {
        int count = 0,i = 0,n = events.size();
-       int day = 1;
+       int day = 0;
        priority_queue<int,vector<int>,greater<int>> pq;
        sort(events.begin(),events.end());
 
