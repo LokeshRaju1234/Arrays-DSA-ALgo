@@ -28,7 +28,7 @@ long long rec(int i,vector<vector<int>> &rides,vector<long long> &dp,int n)
 
     if(dp[i] != -1)
     {
-        return dp[i];//avoiding recurring calls helps resuce T.C
+        return dp[i];//avoiding recurring calls helps reduce T.C
     }
 
     long long skip = rec(i + 1,rides,dp,n);//skip and take the next customer bcz we dont know starting from this index we will get high profit
