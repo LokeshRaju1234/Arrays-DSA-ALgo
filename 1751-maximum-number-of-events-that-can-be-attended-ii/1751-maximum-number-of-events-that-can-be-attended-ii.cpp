@@ -43,7 +43,7 @@ public:
 
         if(j != -1)//found next position that i can take
         {
-            take += rec(j,events,dp,k - 1,n);
+            take += rec(j,events,dp,k - 1,n);//taking this event and red no of even i can take
         }
 
         long long ans = max(take,notTake);
