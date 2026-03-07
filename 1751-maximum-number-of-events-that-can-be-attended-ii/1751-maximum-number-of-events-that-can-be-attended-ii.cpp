@@ -8,7 +8,7 @@ public:
         {
             int mid = l + (h - l) / 2;
 
-            if(currEnd < events[mid][0])
+            if(currEnd < events[mid][0])//checking that I can choose this event or not 
             {
                 ans = mid;
                 h = mid - 1;
@@ -37,10 +37,11 @@ public:
         long long take = events[i][2];
 
         int currEnd = events[i][1];
+
         //finding next available events that i can take
         int j = findNextAvailableEvent(i + 1,n - 1,events,currEnd);
 
-        if(j != -1)
+        if(j != -1)//found next position that i can take
         {
             take += rec(j,events,dp,k - 1,n);
         }
