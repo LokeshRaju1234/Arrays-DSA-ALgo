@@ -28,6 +28,7 @@ public:
         if((int)s[0] == mn || (int)s[n - 1] == mx) return 1;
 
         //for the case of If first is mx or if last is mn or any other case-> done in 2 operaations
+        //Sort prefix+ sort middle or sort suffix+sort middle
         return 2;
         
     }
