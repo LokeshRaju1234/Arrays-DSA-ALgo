@@ -17,9 +17,9 @@ public:
          suffix[n - 1] = 1;//if there is no element on right
          for(int i = n - 2;i >= 0;i--)
          {
-            if(nums[i + 1] != 0 && suffix[i + 1] > LLONG_MAX / nums[i + 1])
+            if(nums[i + 1] != 0 && suffix[i + 1] > LLONG_MAX / nums[i + 1])//checking overflow a * b > LLONG_MAX (simply writing as b > LLONG_MAX / a)
             {
-                suffix[i] = LLONG_MAX;
+                suffix[i] = LLONG_MAX;//if prod overflows
             }
             else
             {
