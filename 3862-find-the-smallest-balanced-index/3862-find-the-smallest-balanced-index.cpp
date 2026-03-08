@@ -29,7 +29,7 @@ public:
 
          for(int i = 0;i < n;i++)
          {
-            if(leftSum[i] == suffix[i]) return i;
+            if(leftSum[i] == suffix[i]) return i; //the array is balanced
          }
 
          return -1;
