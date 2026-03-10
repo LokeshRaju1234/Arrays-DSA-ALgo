@@ -12,7 +12,7 @@ public:
             {
                 if(freq[s[si++]]-- == 2) count--;//then it becomes unique
             }
-            len = max(len,ei - si);
+            len' = max(len,ei - si);
         }
 
         return len;
