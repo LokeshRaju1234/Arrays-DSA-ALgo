@@ -8,10 +8,10 @@ class Node
     Node* prev;
     Node* next;
 
-    Node(int key,int val)
+    Node(int k,int v)
     {
-        this->key = key;
-        this->value = val;
+        key = k;
+        value = v;
         prev = nullptr;
         next = nullptr;
     }
@@ -65,16 +65,18 @@ class Node
         if(map.find(key) != map.end())
         {
             Node* node = map[key];
+            node->value = value;
             deleteNode(node);
             insertAfterHead(node);
         }
         else
         {
-            if(map.size() >= cap)
+            if(map.size() == cap)
             {
             Node* lru = tail->prev;
             deleteNode(lru);
             map.erase(lru->key);
+            delete lru;
             }
 
             Node* newNode = new Node(key,value);
