@@ -5,6 +5,7 @@ public:
 
         if(n == 0) return 1;
 
+        //clz for counting leading zeroes
         mask  = (1 << (32 - __builtin_clz(n)) ) - 1;
         return mask ^ n;
     }
