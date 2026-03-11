@@ -65,7 +65,7 @@ class Node
         if(map.find(key) != map.end())
         {
             Node* node = map[key];
-            node->value = value;
+            node->value = value;//if the key already exists we will update the value
             deleteNode(node);
             insertAfterHead(node);
         }
