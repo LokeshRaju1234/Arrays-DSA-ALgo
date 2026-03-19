@@ -4,39 +4,31 @@ public:
 int MOD = 1e9 + 7;
 vector<vector<vector<int>>>dp;
     int numberOfStableArrays(int zero, int one, int limit) {
-        dp.assign(zero + 1,vector<vector<int>>(one + 1,vector<int>(2,-1)));
-        int startwith0 = solve(zero,one,false,limit);
-        int startwith1 = solve(zero,one,true,limit);
-        return (startwith0 + startwith1) % MOD;
-    }
+        dp.assign(zero + 1,vector<vector<int>>(one + 1,vector<int>(2,0)));
+       dp[0][0][0] = dp[0][0][1] = 1; //base case
 
-    int solve(int zero,int one,bool lastWasone,int limit)
-    {
-        if(zero == 0 && one == 0)
+       for(int zeros = 0;zeros <= zero;zeros++)
+       {
+        for(int ones = 0;ones <= one;ones++)
         {
-            return 1;
-        }
+            if(zeros == 0 && ones == 0) continue;
 
-        if(dp[zero][one][lastWasone] != -1)
-        {
-            return dp[zero][one][lastWasone];
-        }
-        int res = 0;
-        if(lastWasone)//explore 0's
-        {
-            for(int len = 1;len <= min(zero,limit);len++)
+            int res = 0;//explore 0
+            for(int len = 1;len <=limit && zeros - len >= 0;len++)
             {
-            res = (res + solve(zero - len,one,false,limit)) % MOD;
+            res = (res + dp[zeros - len][ones][0]) % MOD;
             }
-        }
-        else //explore 1's
-        {
-            for(int len = 1;len <= min(one,limit);len++)
-            {
-            res = (res + solve(zero,one - len,true,limit)) % MOD;
-            }
-        }
+            dp[zeros][ones][1] = res;//lastwasone = true (1)
 
-        return dp[zero][one][lastWasone] = res;
+            res = 0;//explore 1's
+            for(int len = 1;len <= limit && ones - len >= 0;len++)
+            {
+            res = (res + dp[zeros][ones - len][1]) % MOD;
+            }
+            dp[zeros][ones][0] = res;//lastwasone = false (0)
+        }
+       }
+
+       return (dp[zero][one][0] + dp[zero][one][1]) % MOD; 
     }
 };
