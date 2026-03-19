@@ -2,7 +2,9 @@
 class Solution {
 public:
 int MOD = 1e9 + 7;
+vector<vector<vector<int>>>dp;
     int numberOfStableArrays(int zero, int one, int limit) {
+        dp.assign(zero + 1,vector<vector<int>>(one + 1,vector<int>(2,-1)));
         int startwith0 = solve(zero,one,false,limit);
         int startwith1 = solve(zero,one,true,limit);
         return (startwith0 + startwith1) % MOD;
@@ -15,6 +17,10 @@ int MOD = 1e9 + 7;
             return 1;
         }
 
+        if(dp[zero][one][lastWasone] != -1)
+        {
+            return dp[zero][one][lastWasone];
+        }
         int res = 0;
         if(lastWasone)//explore 0's
         {
@@ -31,6 +37,6 @@ int MOD = 1e9 + 7;
             }
         }
 
-        return res;
+        return dp[zero][one][lastWasone] = res;
     }
 };
