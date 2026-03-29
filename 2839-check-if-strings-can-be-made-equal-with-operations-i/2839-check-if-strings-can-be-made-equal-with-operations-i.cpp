@@ -5,6 +5,8 @@ public:
         //only we can swap is wiht the indices with even pos and odd pos 
         //s1 = "abcd", s2 = "cdab" -->only we can swap indices (0,2) and (1,3) which gives j - i = 2
 
+        //check if string is already equal so we check --> s1[0] == s2[0] && s1[2] == s2[2])
+        //case: s1 = abcd and s2 = abcd 
         bool evenpos = (s1[0] == s2[0] && s1[2] == s2[2]) ||
         (s1[0] == s2[2] && s1[2] == s2[0]);
 
