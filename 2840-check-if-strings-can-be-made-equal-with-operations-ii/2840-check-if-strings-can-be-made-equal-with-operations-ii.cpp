@@ -26,11 +26,13 @@ public:
 
       for(int i = 0;i < 26;i++)
       {
-        //if the cha
+        //if the characters freq in both string doesnt matches then we cant make s1--> s2
+        //because even pos can only bt swappped with even indices and vice versa
         if(even1[i] != even2[i])
         {
             return false;
         }
+
         if(odd1[i] != odd2[i])
         {
             return false;
